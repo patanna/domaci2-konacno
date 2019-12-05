@@ -1,0 +1,23 @@
+#include "Obavestenje.h"
+#include "Korisnik.h"
+#include<iostream>
+#include<string>
+using namespace std;
+
+void Obavestenje::pisi_obavestenje() const
+{
+	
+	cout << endl;
+	
+}
+
+bool Obavestenje::promeni_procitano(bool procitano)
+{
+	return ((this->procitano) = procitano);
+}
+
+ostream & operator<<(ostream & it, const Obavestenje & o)
+{
+	it << o.id << "|" << (o.kreator)->get_username() << "|" << o.Vreme->tm_hour << ":" << o.Vreme->tm_min << ":" << o.Vreme->tm_sec << endl;
+	return it;
+}
