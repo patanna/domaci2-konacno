@@ -1,0 +1,106 @@
+#ifndef __LISTA_OBAVESTENJA_CPP__
+#define __LISTA_OBAVESTENJA_CPP__
+#include<iostream>
+
+#include <ctime>
+#include "Lista_obavestenja.h"
+
+using namespace std;
+
+Lista_obavestenja::Lista_obavestenja() {
+	prvi = nullptr;
+}
+
+void Lista_obavestenja::dodaj_obavestenje(Obavestenje *o) {
+	prvi = new Elem(o, prvi); n++;
+}
+
+void Lista_obavestenja::pisi() const
+{
+	
+		Elem *tek = prvi;
+		while (tek) {
+			if (tek->o)
+					cout << (*(tek->o));
+				
+				
+			tek = tek->sled;
+		};
+
+	
+
+
+
+}
+void Lista_obavestenja::operator()() const
+{
+	Elem *tek = prvi;
+	while (tek) {
+		if (tek->o)
+			if ((tek->o)->get_procitano()!=true) {
+				cout << (*(tek->o));
+			};
+
+		tek = tek->sled;
+	};
+
+}
+int Lista_obavestenja::operator+() const
+{
+	Elem *tek = prvi;
+	int k = 0;
+	while (tek) {
+		if (tek->o)
+			if ((tek->o)->get_procitano() != true) {
+				k++;
+			};
+
+		tek = tek->sled;
+	};
+	return k;
+}
+
+void Lista_obavestenja::operator!() const
+{
+	Elem *tek = prvi;
+	while (tek) {
+		if (tek->o)
+		{
+			(tek->o)->promeni_procitano(true);
+				
+			};
+
+		tek = tek->sled;
+	};
+
+}
+
+void Lista_obavestenja::operator~() const
+{
+	Elem* tek = prvi;
+	while (tek) {
+		Elem* stari = tek;
+		tek = tek->sled;
+		delete stari;
+	
+	}
+
+}
+
+Obavestenje Lista_obavestenja::operator[](int i) const
+{
+	Elem* tek = prvi;
+	while (tek) {
+		if (tek) {
+			if (((tek->o)->get_id()) == (i)) {
+				return (*(tek->o));
+			}
+		}
+		tek = tek->sled;
+
+}
+
+
+}
+
+#endif
