@@ -1,0 +1,38 @@
+#ifndef __OBAVESTENJE_H__                          //da li je procitano i procitati
+#define __OBAVESTENJE_H__
+#include<iostream>
+
+#include <ctime>
+
+using namespace std;
+
+class Korisnik;
+
+class Obavestenje {
+public:
+	Obavestenje(Korisnik *kreator) {
+		auto now = time(nullptr);
+		Vreme = localtime(&now);
+		this->kreator = kreator;
+		this->procitano = false;                  
+	}
+	friend ostream& operator<<(ostream& it, const Obavestenje &o);// {
+		//o.pisi_obavestenje(it); return it;
+	//}
+	int get_id() { return id; }
+	Korisnik* get_kreatora() { return kreator; }
+	bool get_procitano() { return procitano; }
+	virtual void pisi_obavestenje() const;
+	virtual bool promeni_procitano(bool procitano);
+
+protected:
+	static int sifra;
+	int id = ++sifra;
+	tm* Vreme;
+	bool procitano;
+	Korisnik *kreator;
+	
+};
+
+
+#endif
