@@ -1,0 +1,31 @@
+#ifndef __OBJAVA_H__
+#define __OBJAVA_H__
+#include<iostream>
+
+#include <ctime>
+
+using namespace std;
+
+class Objava : public Obavestenje {
+public:
+	Objava(Korisnik *kreator, string obavestenje) : Obavestenje(kreator) {
+		this->tekst = obavestenje;
+	}
+	friend ostream& operator<<(ostream& it, const Objava &o) {
+		it << o.id << "|" << (o.kreator)->get_username() << '|' << o.Vreme->tm_hour << ":" << o.Vreme->tm_min << ":" << o.Vreme->tm_sec <<o.tekst<< endl;
+
+		return it;
+	}
+	int get_id() { return id; }
+	Korisnik* get_kreator() { return kreator; }
+	bool get_procitano() { return procitano; }
+	void pisi_obavestenje() const override {
+			cout << endl;}
+	bool promeni_procitano(bool procitano) override { return ((this->procitano) = procitano); };     //ovako ili neka fora sa dve tacke
+protected:
+	string tekst;
+	
+};
+
+
+#endif
