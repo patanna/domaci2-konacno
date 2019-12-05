@@ -1,0 +1,53 @@
+#include <iostream>                   //operatri ja ne znam sta se desava stvarno i vreme
+
+//class Obavestenje;
+//class Lista_obavestenja;
+
+#include "Lista_obavestenja.h"
+#include "Korisnik.h"
+#include "Obavestenje.h"
+#include "Objava.h"
+//#include "Korisnik.cpp"
+//#include "Lista_obavestenja.cpp"
+
+
+int Obavestenje::sifra = 0;
+int main() {
+	Korisnik *k1 = new Korisnik("Ana");
+	Korisnik *k2 = new Korisnik("Mika");
+	Obavestenje o1(k1);
+	Obavestenje o2(k2);
+	cout << o1 << endl;
+	cout << o2 << endl;
+	Objava *ob1 = new Objava(k1, "Anin_tekst_objave");
+	Objava *ob2 = new Objava(k2, "Mikin_tekst_objave");
+	Objava *ob3 = new Objava(k2, "Opet_Mika");
+	cout << *ob1 << endl;
+	cout << *ob2 << endl;
+	cout << *ob3 << endl;
+	Lista_obavestenja l;
+	//l+=o1
+   // l += ob1;
+	l += ob2;
+	cout << l << endl;
+	cout << (*k2) << endl;
+	k2->posalji_obavestenje(k1, ob3);
+	k1->primi_obavestenje(ob2);
+	k1->primi_obavestenje(ob1);
+	//cout << (*k2) << endl;
+	k1->primi_obavestenje(ob1);
+	cout << (*k2) << endl;
+	cout << (*k1) << endl;
+	ob2->promeni_procitano(false);
+	ob3->promeni_procitano(true);
+	l();
+	!l;
+	cout << l << endl;
+	cout << +l << endl;
+	//~l;
+	cout << l << endl;
+	cout << l[4] << endl;
+	system("pause");
+	return 0;
+}
+
