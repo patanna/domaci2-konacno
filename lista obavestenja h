@@ -1,0 +1,46 @@
+#ifndef LISTA_OBAVESTENJA_H__
+#define LISTA_OBAVESTENJA_H__
+#include<iostream>
+
+#include <ctime>
+#include "Obavestenje.h"
+
+using namespace std;
+
+class Lista_obavestenja {
+	
+public:
+	Lista_obavestenja();
+	Lista_obavestenja(const Lista_obavestenja&) = delete;
+	void dodaj_obavestenje(Obavestenje *o);
+
+	friend Lista_obavestenja& operator+=(Lista_obavestenja &lo, Obavestenje *o) {
+		lo.dodaj_obavestenje(o);
+		return lo;
+
+	}
+
+	friend ostream& operator<<(ostream& it, const Lista_obavestenja &o) {
+		o.pisi(); return it;
+	}
+	void pisi() const; 
+	void operator()() const;
+	int operator+()const;
+	void operator!() const;
+	void operator~()const;
+	Obavestenje operator[](int i)const;
+
+	
+	private:
+	int n;
+	struct Elem {
+		Obavestenje *o;
+		Elem *sled = nullptr;
+		Elem(Obavestenje *o, Elem *poc) { sled = poc; this->o = o; }
+	};
+	Elem *prvi = nullptr, *posl = nullptr;
+
+	
+};
+
+#endif
