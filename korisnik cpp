@@ -1,0 +1,15 @@
+ifndef KORISNIK_H__
+#define KORISNIK__H
+#include "Obavestenje.h"
+#include "Korisnik.h"
+#include<iostream>
+
+void Korisnik::primi_obavestenje(Obavestenje *o) {
+	(*obavestenja) += o;
+}
+
+void Korisnik::posalji_obavestenje(Korisnik *k, Obavestenje *o) {
+	k->primi_obavestenje(o);
+}
+
+#endif
