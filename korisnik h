@@ -1,0 +1,35 @@
+#ifndef __KORISNIK_H__
+#define __KORISNIK_H__
+#include "Lista_obavestenja.h"
+#include "Obavestenje.h"
+
+#include <ctime>
+#include <string>
+
+using namespace std;
+
+class Korisnik {
+public:
+	Korisnik(string username) {
+		this->username = username;
+		obavestenja = new Lista_obavestenja();
+	}
+	string dohvati() { return username; }
+	string get_username() const { return username; }
+	// zabraniti kopiranje
+	friend ostream& operator<<(ostream& it, const Korisnik &p) {
+		p.pisi(it); return it;
+	}
+	void primi_obavestenje(Obavestenje *o);
+	void posalji_obavestenje(Korisnik *k, Obavestenje *o);
+	Lista_obavestenja *obavestenja;
+
+protected:
+	string username;
+	virtual void pisi(ostream& it) const {
+		it << username << ":" << endl << (*obavestenja) << endl;   //nek obavestenja budu specifican nacin taman vidim radi li sranje
+	}
+};
+
+
+#endif
